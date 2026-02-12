@@ -10,10 +10,10 @@ import { db } from '../../db/database';
 import type { Insight, Opportunity } from '../../types';
 
 const chipColors: Record<string, string> = {
-  insight: 'bg-red-50 border-red-200 text-red-800',
-  opportunity: 'bg-violet-50 border-violet-200 text-violet-800',
-  solution: 'bg-blue-50 border-blue-200 text-blue-700',
-  text: 'bg-gray-50 border-gray-200 text-gray-600',
+  insight: 'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/30 dark:border-red-800 dark:text-red-200',
+  opportunity: 'bg-violet-50 border-violet-200 text-violet-800 dark:bg-violet-900/30 dark:border-violet-800 dark:text-violet-200',
+  solution: 'bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900/30 dark:border-blue-800 dark:text-blue-200',
+  text: 'bg-gray-50 border-gray-200 text-gray-600 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300',
 };
 
 const typeIcons: Record<string, React.ReactNode> = {

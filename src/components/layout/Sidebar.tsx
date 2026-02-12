@@ -15,26 +15,26 @@ export function Sidebar() {
 
   return (
     <aside
-      className={`flex flex-col border-r border-gray-200 bg-white transition-all duration-200 ${
+      className={`flex flex-col border-r border-gray-200 bg-white transition-all duration-200 dark:border-gray-700 dark:bg-gray-800 ${
         collapsed ? 'w-14' : 'w-56'
       }`}
     >
-      <div className="flex h-14 items-center border-b border-gray-200 px-3">
+      <div className="flex h-14 items-center border-b border-gray-200 px-3 dark:border-gray-700">
         {collapsed ? (
           <button
             onClick={toggleSidebar}
-            className="mx-auto rounded-md p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+            className="mx-auto rounded-md p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-300"
             title="Expand sidebar"
           >
             <PanelLeftOpen className="h-5 w-5" />
           </button>
         ) : (
           <>
-            <Map className="h-6 w-6 shrink-0 text-indigo-600" />
-            <span className="ml-2 text-lg font-semibold text-gray-900">JourneyMap</span>
+            <Map className="h-6 w-6 shrink-0 text-indigo-600 dark:text-indigo-400" />
+            <span className="ml-2 text-lg font-semibold text-gray-900 dark:text-gray-100">JourneyMap</span>
             <button
               onClick={toggleSidebar}
-              className="ml-auto rounded-md p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+              className="ml-auto rounded-md p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-300"
               title="Collapse sidebar"
             >
               <PanelLeftClose className="h-4 w-4" />
@@ -54,8 +54,8 @@ export function Sidebar() {
                 collapsed ? 'justify-center px-2 py-2' : 'gap-3 px-3 py-2'
               } ${
                 isActive
-                  ? 'bg-indigo-50 text-indigo-700'
-                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300'
+                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200'
               }`
             }
           >

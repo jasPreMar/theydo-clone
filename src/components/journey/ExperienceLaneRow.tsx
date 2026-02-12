@@ -89,24 +89,24 @@ export function ExperienceLaneRow({ lane, steps, stepPhaseColors, persona }: Pro
   return (
     <>
       {/* Lane label cell */}
-      <div className="group flex flex-col items-center justify-center gap-2 border-b border-r border-gray-200 bg-gray-50 px-3 py-3">
-        <span className="text-sm font-medium text-gray-600">{lane.name}</span>
+      <div className="group flex flex-col items-center justify-center gap-2 border-b border-r border-gray-200 bg-gray-50 px-3 py-3 dark:border-gray-700 dark:bg-gray-800">
+        <span className="text-sm font-medium text-gray-600 dark:text-gray-400">{lane.name}</span>
         {persona && (
           <button
             onClick={() => navigate(`/persona/${persona.id}`)}
-            className="flex flex-col items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2.5 shadow-sm transition-colors hover:bg-gray-50 hover:shadow"
+            className="flex flex-col items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2.5 shadow-sm transition-colors hover:bg-gray-50 hover:shadow dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600"
           >
             <img
               src={persona.avatarUrl}
               alt={persona.title}
-              className="h-10 w-10 rounded-full object-cover ring-2 ring-white shadow-sm"
+              className="h-10 w-10 rounded-full object-cover ring-2 ring-white shadow-sm dark:ring-gray-700"
             />
-            <span className="text-xs font-medium text-gray-700 text-center leading-tight">{persona.title}</span>
+            <span className="text-xs font-medium text-gray-700 text-center leading-tight dark:text-gray-300">{persona.title}</span>
           </button>
         )}
         <button
           onClick={deleteLane}
-          className="hidden rounded p-0.5 text-gray-400 hover:bg-gray-200 hover:text-gray-600 group-hover:block"
+          className="hidden rounded p-0.5 text-gray-400 hover:bg-gray-200 hover:text-gray-600 group-hover:block dark:hover:bg-gray-600 dark:hover:text-gray-300"
           title="Delete lane"
         >
           <X className="h-3.5 w-3.5" />
@@ -116,7 +116,7 @@ export function ExperienceLaneRow({ lane, steps, stepPhaseColors, persona }: Pro
       {/* SVG graph spanning all step columns */}
       <div
         ref={containerRef}
-        className="relative border-b border-gray-200"
+        className="relative border-b border-gray-200 text-gray-200 dark:border-gray-700 dark:text-gray-600"
         style={{ gridColumn: `span ${steps.length}` }}
       >
         {/* Phase-colored background columns */}
@@ -124,7 +124,7 @@ export function ExperienceLaneRow({ lane, steps, stepPhaseColors, persona }: Pro
           {steps.map((step) => (
             <div
               key={step.id}
-              className="flex-1 border-r border-gray-200"
+              className="flex-1 border-r border-gray-200 dark:border-gray-700"
               style={{ backgroundColor: (stepPhaseColors.get(step.id) ?? '#888') + '12' }}
             />
           ))}
@@ -142,7 +142,7 @@ export function ExperienceLaneRow({ lane, steps, stepPhaseColors, persona }: Pro
             y1={neutralY}
             x2={svgWidth}
             y2={neutralY}
-            stroke="#d1d5db"
+            stroke="currentColor"
             strokeWidth={1}
             strokeDasharray="6 4"
           />
@@ -158,7 +158,7 @@ export function ExperienceLaneRow({ lane, steps, stepPhaseColors, persona }: Pro
                 y1={0}
                 x2={x}
                 y2={SVG_HEIGHT}
-                stroke="#e5e7eb"
+                stroke="currentColor"
                 strokeWidth={1}
                 strokeDasharray="4 3"
               />

@@ -39,7 +39,7 @@ export function PhaseHeader({ phase, stepCount }: Props) {
       </span>
       <button
         onClick={addStep}
-        className="rounded p-0.5 opacity-0 transition-opacity hover:bg-white/50 group-hover:opacity-100"
+        className="rounded p-0.5 opacity-0 transition-opacity hover:bg-white/50 group-hover:opacity-100 dark:hover:bg-black/20"
         style={{ color: phase.color }}
         title="Add step"
       >

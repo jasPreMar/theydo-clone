@@ -25,14 +25,14 @@ export function StepCell({ step, phaseColor }: Props) {
 
   return (
     <div
-      className="flex min-h-[56px] cursor-pointer items-center gap-2 border-b border-r border-gray-200 px-3 py-2 text-sm transition-colors hover:brightness-95"
-      style={{ backgroundColor: phaseColor ? phaseColor + '15' : 'white' }}
+      className={`flex min-h-[56px] cursor-pointer items-center gap-2 border-b border-r border-gray-200 px-3 py-2 text-sm transition-colors hover:brightness-95 dark:border-gray-700 dark:hover:brightness-110 ${!phaseColor ? 'bg-white dark:bg-gray-800' : ''}`}
+      style={phaseColor ? { backgroundColor: phaseColor + '15' } : undefined}
       onClick={() => openPanel(step.id, 'step')}
     >
-      <Diamond className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+      <Diamond className="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500" />
       {editing ? (
         <input
-          className="w-full rounded border border-indigo-300 px-1 py-0.5 text-sm focus:outline-none"
+          className="w-full rounded border border-indigo-300 bg-transparent px-1 py-0.5 text-sm focus:outline-none dark:border-indigo-600 dark:bg-gray-800 dark:text-gray-100"
           value={name}
           onChange={(e) => setName(e.target.value)}
           onBlur={save}
@@ -42,7 +42,7 @@ export function StepCell({ step, phaseColor }: Props) {
         />
       ) : (
         <span
-          className="flex-1 leading-snug"
+          className="flex-1 leading-snug dark:text-gray-200"
           onDoubleClick={(e) => {
             e.stopPropagation();
             setEditing(true);

@@ -17,18 +17,18 @@ export function PersonaList() {
         <button
           key={p.id}
           onClick={() => navigate(`/persona/${p.id}`)}
-          className="flex flex-col gap-2 rounded-xl border border-gray-200 bg-white p-5 text-left shadow-sm transition-shadow hover:shadow-md"
+          className="flex flex-col gap-2 rounded-xl border border-gray-200 bg-white p-5 text-left shadow-sm transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:hover:shadow-lg"
         >
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-100">
-              <Users className="h-4 w-4 text-indigo-600" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/50">
+              <Users className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
             </div>
             <div>
-              <span className="text-sm font-semibold text-gray-900">{p.title}</span>
-              <p className="text-xs text-gray-500">{p.role}</p>
+              <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">{p.title}</span>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{p.role}</p>
             </div>
           </div>
-          <p className="text-xs text-gray-500">{p.primaryGoal}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">{p.primaryGoal}</p>
         </button>
       ))}
     </div>

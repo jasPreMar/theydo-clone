@@ -32,9 +32,9 @@ export function StepPanel({ id }: { id: string }) {
   return (
     <div className="space-y-4">
       <div>
-        <label className="mb-1 block text-xs font-medium text-gray-500">Step Name</label>
+        <label className="mb-1 block text-xs font-medium text-gray-500 dark:text-gray-400">Step Name</label>
         <input
-          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-indigo-300 focus:outline-none focus:ring-1 focus:ring-indigo-300"
+          className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-indigo-300 focus:outline-none focus:ring-1 focus:ring-indigo-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:focus:border-indigo-500 dark:focus:ring-indigo-500"
           value={name}
           onChange={(e) => setName(e.target.value)}
           onBlur={saveName}
@@ -45,12 +45,12 @@ export function StepPanel({ id }: { id: string }) {
         onClick={toggleMoT}
         className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-sm transition-colors ${
           step.momentOfTruth
-            ? 'border-amber-200 bg-amber-50 text-amber-700'
-            : 'border-gray-200 text-gray-600 hover:bg-gray-50'
+            ? 'border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-800 dark:bg-amber-900/30 dark:text-amber-200'
+            : 'border-gray-200 text-gray-600 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700'
         }`}
       >
         {step.momentOfTruth ? (
-          <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+          <Star className="h-4 w-4 fill-amber-400 text-amber-400 dark:fill-amber-500 dark:text-amber-500" />
         ) : (
           <StarOff className="h-4 w-4" />
         )}
@@ -59,10 +59,10 @@ export function StepPanel({ id }: { id: string }) {
 
       {step.touchpoints && step.touchpoints.length > 0 && (
         <div>
-          <label className="mb-1 block text-xs font-medium text-gray-500">Touchpoints</label>
+          <label className="mb-1 block text-xs font-medium text-gray-500 dark:text-gray-400">Touchpoints</label>
           <div className="flex flex-wrap gap-1.5">
             {step.touchpoints.map((tp, i) => (
-              <span key={i} className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-600">
+              <span key={i} className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-600 dark:bg-gray-600 dark:text-gray-300">
                 {tp}
               </span>
             ))}
@@ -71,7 +71,7 @@ export function StepPanel({ id }: { id: string }) {
       )}
 
       <div>
-        <label className="mb-1 block text-xs font-medium text-gray-500">Experience Score</label>
+        <label className="mb-1 block text-xs font-medium text-gray-500 dark:text-gray-400">Experience Score</label>
         <div className="flex items-center gap-3">
           <input
             type="range"
@@ -80,7 +80,7 @@ export function StepPanel({ id }: { id: string }) {
             step={0.5}
             value={step.experienceScore ?? 0}
             onChange={(e) => db.steps.update(id, { experienceScore: parseFloat(e.target.value) })}
-            className="h-2 flex-1 cursor-pointer appearance-none rounded-lg bg-gray-200 accent-indigo-500"
+            className="h-2 flex-1 cursor-pointer appearance-none rounded-lg bg-gray-200 accent-indigo-500 dark:bg-gray-600"
           />
           <div
             className="flex h-8 w-14 items-center justify-center rounded-md text-xs font-semibold"
@@ -90,7 +90,7 @@ export function StepPanel({ id }: { id: string }) {
             {(step.experienceScore ?? 0).toFixed(1)}
           </div>
         </div>
-        <div className="mt-1 flex justify-between text-[10px] text-gray-400">
+        <div className="mt-1 flex justify-between text-[10px] text-gray-400 dark:text-gray-500">
           <span>-2.0</span>
           <span>0</span>
           <span>+2.0</span>

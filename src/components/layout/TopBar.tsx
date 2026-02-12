@@ -25,14 +25,14 @@ export function TopBar() {
   }
 
   return (
-    <header className="flex h-14 items-center gap-3 border-b border-gray-200 bg-white px-6">
+    <header className="flex h-14 items-center gap-3 border-b border-gray-200 bg-white px-6 dark:border-gray-700 dark:bg-gray-800">
       {breadcrumb && (
         <>
-          <span className="text-sm text-gray-400">{breadcrumb}</span>
-          <span className="text-sm text-gray-300">/</span>
+          <span className="text-sm text-gray-400 dark:text-gray-500">{breadcrumb}</span>
+          <span className="text-sm text-gray-300 dark:text-gray-600">/</span>
         </>
       )}
-      <h1 className="text-lg font-semibold text-gray-900">{title}</h1>
+      <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{title}</h1>
     </header>
   );
 }

@@ -11,7 +11,7 @@ interface Props {
 export function LaneCell({ items, insightsMap, opportunitiesMap, phaseColor }: Props) {
   return (
     <div
-      className="flex min-h-[80px] flex-col gap-2 border-b border-r border-gray-200 p-2"
+      className="flex min-h-[80px] flex-col gap-2 border-b border-r border-gray-200 p-2 dark:border-gray-700"
       style={{ backgroundColor: phaseColor ? phaseColor + '12' : undefined }}
     >
       {items.map((item) => {

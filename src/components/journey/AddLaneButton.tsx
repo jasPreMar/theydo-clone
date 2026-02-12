@@ -33,18 +33,18 @@ export function AddLaneButton({ journeyId, currentLaneCount }: Props) {
     <div className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 rounded-lg border border-dashed border-gray-300 px-3 py-2 text-xs text-gray-500 transition-colors hover:border-gray-400 hover:text-gray-700"
+        className="flex items-center gap-1.5 rounded-lg border border-dashed border-gray-300 px-3 py-2 text-xs text-gray-500 transition-colors hover:border-gray-400 hover:text-gray-700 dark:border-gray-600 dark:text-gray-400 dark:hover:border-gray-500 dark:hover:text-gray-300"
       >
         <Plus className="h-3.5 w-3.5" />
         Add Lane
       </button>
       {open && (
-        <div className="absolute left-0 top-full z-10 mt-1 rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
+        <div className="absolute left-0 top-full z-10 mt-1 rounded-lg border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-700 dark:bg-gray-800">
           {laneTypes.map(({ type, label }) => (
             <button
               key={type}
               onClick={() => addLane(type, label.replace(' Lane', ''))}
-              className="block w-full px-4 py-2 text-left text-xs text-gray-700 hover:bg-gray-50"
+              className="block w-full px-4 py-2 text-left text-xs text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700"
             >
               {label}
             </button>
