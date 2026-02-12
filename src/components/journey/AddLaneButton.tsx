@@ -8,6 +8,7 @@ interface Props {
 }
 
 const laneTypes = [
+  { type: 'experience' as const, label: 'Experience Lane' },
   { type: 'insights' as const, label: 'Insights Lane' },
   { type: 'opportunities' as const, label: 'Opportunities Lane' },
   { type: 'solutions' as const, label: 'Solutions Lane' },

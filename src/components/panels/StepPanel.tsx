@@ -3,6 +3,12 @@ import { db } from '../../db/database';
 import { Star, StarOff } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
+function scoreToColor(score: number): string {
+  const s = Math.max(-2, Math.min(2, score));
+  const hue = ((s + 2) / 4) * 120;
+  return `hsl(${hue}, 70%, 85%)`;
+}
+
 export function StepPanel({ id }: { id: string }) {
   const step = useLiveQuery(() => db.steps.get(id), [id]);
   const [name, setName] = useState('');
@@ -63,6 +69,33 @@ export function StepPanel({ id }: { id: string }) {
           </div>
         </div>
       )}
+
+      <div>
+        <label className="mb-1 block text-xs font-medium text-gray-500">Experience Score</label>
+        <div className="flex items-center gap-3">
+          <input
+            type="range"
+            min={-2}
+            max={2}
+            step={0.5}
+            value={step.experienceScore ?? 0}
+            onChange={(e) => db.steps.update(id, { experienceScore: parseFloat(e.target.value) })}
+            className="h-2 flex-1 cursor-pointer appearance-none rounded-lg bg-gray-200 accent-indigo-500"
+          />
+          <div
+            className="flex h-8 w-14 items-center justify-center rounded-md text-xs font-semibold"
+            style={{ backgroundColor: scoreToColor(step.experienceScore ?? 0) }}
+          >
+            {(step.experienceScore ?? 0) > 0 ? '+' : ''}
+            {(step.experienceScore ?? 0).toFixed(1)}
+          </div>
+        </div>
+        <div className="mt-1 flex justify-between text-[10px] text-gray-400">
+          <span>-2.0</span>
+          <span>0</span>
+          <span>+2.0</span>
+        </div>
+      </div>
     </div>
   );
 }

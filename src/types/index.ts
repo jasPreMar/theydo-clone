@@ -30,12 +30,13 @@ export interface Step {
   order: number;
   momentOfTruth: boolean;
   touchpoints?: string[];
+  experienceScore?: number;
 }
 
 export interface Lane {
   id: string;
   journeyId: string;
-  type: 'insights' | 'opportunities' | 'solutions' | 'metrics' | 'text';
+  type: 'insights' | 'opportunities' | 'solutions' | 'metrics' | 'text' | 'experience';
   name: string;
   order: number;
 }

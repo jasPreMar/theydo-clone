@@ -5,6 +5,7 @@ import { useJourney, usePhases, useSteps, useLanes } from '../../hooks/useDB';
 import { PhaseHeader } from './PhaseHeader';
 import { StepCell } from './StepCell';
 import { LaneRow } from './LaneRow';
+import { ExperienceLaneRow } from './ExperienceLaneRow';
 import { AddLaneButton } from './AddLaneButton';
 import { EmptyState } from '../common/EmptyState';
 import type { Phase, Insight, Opportunity, LaneItem } from '../../types';
@@ -88,16 +89,24 @@ export function JourneyEditor() {
           ))}
 
           {/* Lane rows */}
-          {lanes.map((lane) => (
-            <LaneRow
-              key={lane.id}
-              lane={lane}
-              steps={orderedSteps}
-              laneItems={itemsByLane.get(lane.id) ?? []}
-              insightsMap={insightsMap}
-              opportunitiesMap={opportunitiesMap}
-            />
-          ))}
+          {lanes.map((lane) =>
+            lane.type === 'experience' ? (
+              <ExperienceLaneRow
+                key={lane.id}
+                lane={lane}
+                steps={orderedSteps}
+              />
+            ) : (
+              <LaneRow
+                key={lane.id}
+                lane={lane}
+                steps={orderedSteps}
+                laneItems={itemsByLane.get(lane.id) ?? []}
+                insightsMap={insightsMap}
+                opportunitiesMap={opportunitiesMap}
+              />
+            )
+          )}
         </div>
       </div>
 

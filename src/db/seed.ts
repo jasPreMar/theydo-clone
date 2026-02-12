@@ -95,70 +95,71 @@ const phasesData: PhaseData[] = [
   {
     phase: { id: 'phase-0', journeyId: JOURNEY_ID, name: 'Before — The Upstream Gap', color: '#94a3b8', order: 0 },
     steps: [
-      { id: 'step-0-0', phaseId: 'phase-0', name: 'Marketing develops without compliance', order: 0, momentOfTruth: false, touchpoints: ['Campaign brief tools', 'Creative platforms'] },
-      { id: 'step-0-1', phaseId: 'phase-0', name: 'Compliance guidance unavailable at brief stage', order: 1, momentOfTruth: false, touchpoints: ['Brief templates'] },
-      { id: 'step-0-2', phaseId: 'phase-0', name: 'Marketing delays involving compliance', order: 2, momentOfTruth: false, touchpoints: ['Project management tools'] },
+      { id: 'step-0-0', phaseId: 'phase-0', name: 'Marketing develops without compliance', order: 0, momentOfTruth: false, touchpoints: ['Campaign brief tools', 'Creative platforms'], experienceScore: -1.5 },
+      { id: 'step-0-1', phaseId: 'phase-0', name: 'Compliance guidance unavailable at brief stage', order: 1, momentOfTruth: false, touchpoints: ['Brief templates'], experienceScore: -1.0 },
+      { id: 'step-0-2', phaseId: 'phase-0', name: 'Marketing delays involving compliance', order: 2, momentOfTruth: false, touchpoints: ['Project management tools'], experienceScore: -1.5 },
     ],
   },
   {
     phase: { id: 'phase-1', journeyId: JOURNEY_ID, name: 'Triage & Intake', color: '#60a5fa', order: 1 },
     steps: [
-      { id: 'step-1-0', phaseId: 'phase-1', name: 'Scan inbound queue', order: 0, momentOfTruth: false, touchpoints: ['Email', 'Ticketing system'] },
-      { id: 'step-1-1', phaseId: 'phase-1', name: 'Prioritize by urgency', order: 1, momentOfTruth: false, touchpoints: ['Queue dashboard'] },
-      { id: 'step-1-2', phaseId: 'phase-1', name: 'Route to specialized reviewers', order: 2, momentOfTruth: false, touchpoints: ['Team assignments'] },
-      { id: 'step-1-3', phaseId: 'phase-1', name: 'Context-set what\'s launching', order: 3, momentOfTruth: false, touchpoints: ['Slack', 'Campaign briefs'] },
+      { id: 'step-1-0', phaseId: 'phase-1', name: 'Scan inbound queue', order: 0, momentOfTruth: false, touchpoints: ['Email', 'Ticketing system'], experienceScore: -0.5 },
+      { id: 'step-1-1', phaseId: 'phase-1', name: 'Prioritize by urgency', order: 1, momentOfTruth: false, touchpoints: ['Queue dashboard'], experienceScore: -1.0 },
+      { id: 'step-1-2', phaseId: 'phase-1', name: 'Route to specialized reviewers', order: 2, momentOfTruth: false, touchpoints: ['Team assignments'], experienceScore: 0.0 },
+      { id: 'step-1-3', phaseId: 'phase-1', name: 'Context-set what\'s launching', order: 3, momentOfTruth: false, touchpoints: ['Slack', 'Campaign briefs'], experienceScore: 0.5 },
     ],
   },
   {
     phase: { id: 'phase-2', journeyId: JOURNEY_ID, name: 'Deep Review', color: '#a78bfa', order: 2 },
     steps: [
-      { id: 'step-2-0', phaseId: 'phase-2', name: 'Line-by-line copy review', order: 0, momentOfTruth: false, touchpoints: ['Review tool', 'Document editor'] },
-      { id: 'step-2-1', phaseId: 'phase-2', name: 'Cross-reference substantiation', order: 1, momentOfTruth: false, touchpoints: ['Substantiation database'] },
-      { id: 'step-2-2', phaseId: 'phase-2', name: 'Pattern-match past decisions', order: 2, momentOfTruth: false, touchpoints: ['Precedent library'] },
-      { id: 'step-2-3', phaseId: 'phase-2', name: 'Interpret ambiguous regulations', order: 3, momentOfTruth: true, touchpoints: ['Regulatory guidance docs'] },
-      { id: 'step-2-4', phaseId: 'phase-2', name: 'Calibrate to risk tolerance', order: 4, momentOfTruth: false, touchpoints: ['Risk framework'] },
-      { id: 'step-2-5', phaseId: 'phase-2', name: 'Decide whether to escalate', order: 5, momentOfTruth: false, touchpoints: ['Escalation matrix'] },
+      { id: 'step-2-0', phaseId: 'phase-2', name: 'Line-by-line copy review', order: 0, momentOfTruth: false, touchpoints: ['Review tool', 'Document editor'], experienceScore: 0.5 },
+      { id: 'step-2-1', phaseId: 'phase-2', name: 'Cross-reference substantiation', order: 1, momentOfTruth: false, touchpoints: ['Substantiation database'], experienceScore: 0.0 },
+      { id: 'step-2-2', phaseId: 'phase-2', name: 'Pattern-match past decisions', order: 2, momentOfTruth: false, touchpoints: ['Precedent library'], experienceScore: -1.0 },
+      { id: 'step-2-3', phaseId: 'phase-2', name: 'Interpret ambiguous regulations', order: 3, momentOfTruth: true, touchpoints: ['Regulatory guidance docs'], experienceScore: -2.0 },
+      { id: 'step-2-4', phaseId: 'phase-2', name: 'Calibrate to risk tolerance', order: 4, momentOfTruth: false, touchpoints: ['Risk framework'], experienceScore: -0.5 },
+      { id: 'step-2-5', phaseId: 'phase-2', name: 'Decide whether to escalate', order: 5, momentOfTruth: false, touchpoints: ['Escalation matrix'], experienceScore: -1.0 },
     ],
   },
   {
     phase: { id: 'phase-3', journeyId: JOURNEY_ID, name: 'Translation & Communication', color: '#f59e0b', order: 3 },
     steps: [
-      { id: 'step-3-0', phaseId: 'phase-3', name: 'Explain decisions in plain language', order: 0, momentOfTruth: true, touchpoints: ['Email', 'Review comments'] },
-      { id: 'step-3-1', phaseId: 'phase-3', name: 'Write actionable feedback', order: 1, momentOfTruth: true, touchpoints: ['Review tool', 'Shared docs'] },
-      { id: 'step-3-2', phaseId: 'phase-3', name: 'Navigate jargon gap', order: 2, momentOfTruth: false, touchpoints: ['Meetings', 'Slack'] },
+      { id: 'step-3-0', phaseId: 'phase-3', name: 'Explain decisions in plain language', order: 0, momentOfTruth: true, touchpoints: ['Email', 'Review comments'], experienceScore: 1.0 },
+      { id: 'step-3-1', phaseId: 'phase-3', name: 'Write actionable feedback', order: 1, momentOfTruth: true, touchpoints: ['Review tool', 'Shared docs'], experienceScore: 1.5 },
+      { id: 'step-3-2', phaseId: 'phase-3', name: 'Navigate jargon gap', order: 2, momentOfTruth: false, touchpoints: ['Meetings', 'Slack'], experienceScore: -0.5 },
     ],
   },
   {
     phase: { id: 'phase-4', journeyId: JOURNEY_ID, name: 'Negotiation & Alignment', color: '#f97316', order: 4 },
     steps: [
-      { id: 'step-4-0', phaseId: 'phase-4', name: 'Mediate between marketing/legal/product', order: 0, momentOfTruth: false, touchpoints: ['Meetings', 'Email'] },
-      { id: 'step-4-1', phaseId: 'phase-4', name: 'Explain why changes needed', order: 1, momentOfTruth: false, touchpoints: ['Presentations', 'Documentation'] },
-      { id: 'step-4-2', phaseId: 'phase-4', name: 'Navigate pushback', order: 2, momentOfTruth: true, touchpoints: ['Meetings', 'Slack'] },
+      { id: 'step-4-0', phaseId: 'phase-4', name: 'Mediate between marketing/legal/product', order: 0, momentOfTruth: false, touchpoints: ['Meetings', 'Email'], experienceScore: -0.5 },
+      { id: 'step-4-1', phaseId: 'phase-4', name: 'Explain why changes needed', order: 1, momentOfTruth: false, touchpoints: ['Presentations', 'Documentation'], experienceScore: 0.0 },
+      { id: 'step-4-2', phaseId: 'phase-4', name: 'Navigate pushback', order: 2, momentOfTruth: true, touchpoints: ['Meetings', 'Slack'], experienceScore: -1.5 },
     ],
   },
   {
     phase: { id: 'phase-5', journeyId: JOURNEY_ID, name: 'Approval & Handoff', color: '#34d399', order: 5 },
     steps: [
-      { id: 'step-5-0', phaseId: 'phase-5', name: 'Sign off final version', order: 0, momentOfTruth: false, touchpoints: ['Approval system'] },
-      { id: 'step-5-1', phaseId: 'phase-5', name: 'Communicate results', order: 1, momentOfTruth: false, touchpoints: ['Email', 'Slack'] },
-      { id: 'step-5-2', phaseId: 'phase-5', name: 'Document for audit trail', order: 2, momentOfTruth: false, touchpoints: ['Compliance archive'] },
+      { id: 'step-5-0', phaseId: 'phase-5', name: 'Sign off final version', order: 0, momentOfTruth: false, touchpoints: ['Approval system'], experienceScore: 1.5 },
+      { id: 'step-5-1', phaseId: 'phase-5', name: 'Communicate results', order: 1, momentOfTruth: false, touchpoints: ['Email', 'Slack'], experienceScore: 1.0 },
+      { id: 'step-5-2', phaseId: 'phase-5', name: 'Document for audit trail', order: 2, momentOfTruth: false, touchpoints: ['Compliance archive'], experienceScore: 0.5 },
     ],
   },
   {
     phase: { id: 'phase-6', journeyId: JOURNEY_ID, name: 'After — Monitoring', color: '#64748b', order: 6 },
     steps: [
-      { id: 'step-6-0', phaseId: 'phase-6', name: 'Post-approval spot-checks', order: 0, momentOfTruth: false, touchpoints: ['Live asset monitoring'] },
-      { id: 'step-6-1', phaseId: 'phase-6', name: 'Version control verification', order: 1, momentOfTruth: false, touchpoints: ['CMS', 'Asset manager'] },
-      { id: 'step-6-2', phaseId: 'phase-6', name: 'Policy catch-up', order: 2, momentOfTruth: false, touchpoints: ['Regulatory feeds', 'Training'] },
+      { id: 'step-6-0', phaseId: 'phase-6', name: 'Post-approval spot-checks', order: 0, momentOfTruth: false, touchpoints: ['Live asset monitoring'], experienceScore: -0.5 },
+      { id: 'step-6-1', phaseId: 'phase-6', name: 'Version control verification', order: 1, momentOfTruth: false, touchpoints: ['CMS', 'Asset manager'], experienceScore: -1.0 },
+      { id: 'step-6-2', phaseId: 'phase-6', name: 'Policy catch-up', order: 2, momentOfTruth: false, touchpoints: ['Regulatory feeds', 'Training'], experienceScore: 0.0 },
     ],
   },
 ];
 
 // --- Lanes ---
 const lanes: Lane[] = [
-  { id: 'lane-touchpoints', journeyId: JOURNEY_ID, type: 'text', name: 'Touchpoints', order: 0 },
-  { id: 'lane-pains', journeyId: JOURNEY_ID, type: 'insights', name: 'Pains', order: 1 },
-  { id: 'lane-opportunities', journeyId: JOURNEY_ID, type: 'opportunities', name: 'Opportunities', order: 2 },
+  { id: 'lane-experience', journeyId: JOURNEY_ID, type: 'experience', name: 'Experience', order: 0 },
+  { id: 'lane-touchpoints', journeyId: JOURNEY_ID, type: 'text', name: 'Touchpoints', order: 1 },
+  { id: 'lane-pains', journeyId: JOURNEY_ID, type: 'insights', name: 'Pains', order: 2 },
+  { id: 'lane-opportunities', journeyId: JOURNEY_ID, type: 'opportunities', name: 'Opportunities', order: 3 },
 ];
 
 // --- Insights (pains mapped to steps) ---
@@ -224,9 +225,54 @@ for (const pd of phasesData) {
   }
 }
 
+// Experience scores by step ID for migration
+const experienceScores: Record<string, number> = {};
+for (const pd of phasesData) {
+  for (const step of pd.steps) {
+    if (step.experienceScore !== undefined) {
+      experienceScores[step.id] = step.experienceScore;
+    }
+  }
+}
+
+async function migrateExperienceLane() {
+  // Check if the experience lane already exists
+  const existing = await db.lanes.get('lane-experience');
+  if (existing) return;
+
+  await db.transaction('rw', [db.lanes, db.steps], async () => {
+    // Shift existing lane orders up by 1
+    const allLanes = await db.lanes.where('journeyId').equals(JOURNEY_ID).toArray();
+    for (const lane of allLanes) {
+      await db.lanes.update(lane.id, { order: lane.order + 1 });
+    }
+
+    // Add the experience lane at order 0
+    await db.lanes.add({
+      id: 'lane-experience',
+      journeyId: JOURNEY_ID,
+      type: 'experience',
+      name: 'Experience',
+      order: 0,
+    });
+
+    // Patch experience scores onto existing steps
+    for (const [stepId, score] of Object.entries(experienceScores)) {
+      const step = await db.steps.get(stepId);
+      if (step && step.experienceScore === undefined) {
+        await db.steps.update(stepId, { experienceScore: score });
+      }
+    }
+  });
+}
+
 export async function seedDatabase() {
   const count = await db.projects.count();
-  if (count > 0) return;
+  if (count > 0) {
+    // Existing DB — run migrations for new features
+    await migrateExperienceLane();
+    return;
+  }
 
   await db.transaction('rw',
     [db.projects, db.journeys, db.phases, db.steps, db.lanes, db.laneItems, db.insights, db.opportunities, db.personas],
