@@ -130,26 +130,26 @@ const phasesData: PhaseData[] = [
   {
     phase: { id: 'phase-2', journeyId: JOURNEY_ID, name: 'Deep Review', color: '#a78bfa', order: 2 },
     steps: [
-      { id: 'step-2-0', phaseId: 'phase-2', name: 'Line-by-line copy review', order: 0, momentOfTruth: false, touchpoints: ['Google Docs', 'Word Track Changes', 'Adobe Acrobat'], experienceScore: 0.5 },
-      { id: 'step-2-1', phaseId: 'phase-2', name: 'Cross-reference substantiation docs', order: 1, momentOfTruth: false, touchpoints: ['Shared Drive', 'Spreadsheets', 'Substantiation files'], experienceScore: 0.0 },
-      { id: 'step-2-2', phaseId: 'phase-2', name: 'Search for past precedent decisions', order: 2, momentOfTruth: false, touchpoints: ['Email archives', 'Slack search', 'Personal notes'], experienceScore: -1.0 },
-      { id: 'step-2-3', phaseId: 'phase-2', name: 'Interpret ambiguous regulations', order: 3, momentOfTruth: true, touchpoints: ['Regulatory PDFs', 'FTC/CFPB guidance', 'Law firm newsletters'], experienceScore: -2.0 },
-      { id: 'step-2-4', phaseId: 'phase-2', name: 'Calibrate to org risk tolerance', order: 4, momentOfTruth: false, touchpoints: ['Internal playbooks', 'Risk framework docs'], experienceScore: -0.5 },
-      { id: 'step-2-5', phaseId: 'phase-2', name: 'Decide whether to escalate to legal', order: 5, momentOfTruth: false, touchpoints: ['Email', 'Slack DMs'], experienceScore: -1.0 },
+      { id: 'step-2-0', phaseId: 'phase-2', name: 'Review AI compliance analysis visualization', order: 0, momentOfTruth: false, touchpoints: ['Decision tree view', 'AI analysis summary', 'Document viewer'], experienceScore: -0.5 },
+      { id: 'step-2-1', phaseId: 'phase-2', name: 'Drill into flagged issues and AI comments', order: 1, momentOfTruth: false, touchpoints: ['Anchored comments', 'Document highlights', 'Check detail panels'], experienceScore: 0.5 },
+      { id: 'step-2-2', phaseId: 'phase-2', name: 'Override AI check results where judgment differs', order: 2, momentOfTruth: true, touchpoints: ['Override controls', 'Analyst notes', 'Decision tree nodes'], experienceScore: -0.5 },
+      { id: 'step-2-3', phaseId: 'phase-2', name: 'Cross-reference substantiation and past precedent', order: 3, momentOfTruth: false, touchpoints: ['Substantiation library', 'Shared Drive', 'Precedent search'], experienceScore: -0.5 },
+      { id: 'step-2-4', phaseId: 'phase-2', name: 'Interpret ambiguous regulations', order: 4, momentOfTruth: true, touchpoints: ['Regulatory PDFs', 'FTC/CFPB guidance', 'Law firm newsletters'], experienceScore: -2.0 },
+      { id: 'step-2-5', phaseId: 'phase-2', name: 'Calibrate to org risk tolerance and decide escalation', order: 5, momentOfTruth: false, touchpoints: ['Internal playbooks', 'Risk framework docs', 'Email', 'Slack DMs'], experienceScore: -1.0 },
     ],
   },
   {
     phase: { id: 'phase-3', journeyId: JOURNEY_ID, name: 'Translation & Communication', color: '#f59e0b', order: 3 },
     steps: [
-      { id: 'step-3-0', phaseId: 'phase-3', name: 'Translate legal risk into plain language', order: 0, momentOfTruth: true, touchpoints: ['Email', 'Google Docs comments', 'Slack'], experienceScore: 1.0 },
-      { id: 'step-3-1', phaseId: 'phase-3', name: 'Write actionable feedback for marketing', order: 1, momentOfTruth: true, touchpoints: ['Google Docs', 'Email', 'Review templates'], experienceScore: 1.5 },
+      { id: 'step-3-0', phaseId: 'phase-3', name: 'Annotate compliance results for marketing', order: 0, momentOfTruth: true, touchpoints: ['Visualization annotations', 'Plain-language templates', 'Comment anchors'], experienceScore: -0.5 },
+      { id: 'step-3-1', phaseId: 'phase-3', name: 'Send structured feedback from compliance view', order: 1, momentOfTruth: true, touchpoints: ['In-app messaging', 'Structured feedback view', 'Email notifications'], experienceScore: -0.5 },
     ],
   },
   {
     phase: { id: 'phase-4', journeyId: JOURNEY_ID, name: 'Negotiation & Alignment', color: '#f97316', order: 4 },
     steps: [
-      { id: 'step-4-0', phaseId: 'phase-4', name: 'Mediate between marketing, legal, and product', order: 0, momentOfTruth: false, touchpoints: ['Video calls', 'Meeting rooms', 'Email'], experienceScore: -0.5 },
-      { id: 'step-4-1', phaseId: 'phase-4', name: 'Explain why changes are needed', order: 1, momentOfTruth: false, touchpoints: ['Presentations', 'Email', 'Shared docs'], experienceScore: 0.0 },
+      { id: 'step-4-0', phaseId: 'phase-4', name: 'Walk marketing through compliance visualization', order: 0, momentOfTruth: false, touchpoints: ['Shared visualization link', 'Screen share', 'Video calls'], experienceScore: -1.0 },
+      { id: 'step-4-1', phaseId: 'phase-4', name: 'Explain AI rationale and analyst overrides', order: 1, momentOfTruth: false, touchpoints: ['Decision tree walkthrough', 'Override annotations', 'Presentations'], experienceScore: -0.5 },
       { id: 'step-4-2', phaseId: 'phase-4', name: 'Navigate pushback from stakeholders', order: 2, momentOfTruth: true, touchpoints: ['Meetings', 'Slack', 'Email threads'], experienceScore: -1.5 },
     ],
   },
@@ -194,19 +194,18 @@ const insights: Insight[] = [
   { id: 'ins-11', projectId: PROJECT_ID, title: 'Substantiation tracking is manual and fragile', description: 'When marketing says "our product is #1," the analyst must find the source, verify it\'s current, confirm the methodology, and check usage rights — all across shared drives held together with duct tape.', experienceImpact: -2, status: 'Validated' },
   { id: 'ins-12', projectId: PROJECT_ID, title: 'Two failure modes under pressure', description: 'Analysts either get overwhelmed by volume and fall behind, or aggressively reject at the first issue found — extending iteration cycles and damaging the relationship with marketing. Both modes are common.', experienceImpact: -2, status: 'Validated' },
   { id: 'ins-13', projectId: PROJECT_ID, title: 'Sensitive data exposure in fragmented channels', description: 'Compliance discussions happen in Slack threads and email chains where sensitive data (screening matches, regulatory flags, criminal record matches) can be accidentally exposed to the wrong people.', experienceImpact: -2, status: 'Validated' },
+  { id: 'ins-14', projectId: PROJECT_ID, title: 'AI analysis needs human calibration for org-specific risk', description: 'Different organizations have varying risk tolerance for the same regulations. What\'s non-negotiable for one company may be deprioritized by another. AI checks apply broad rules but can\'t account for each organization\'s specific risk appetite, internal playbooks, or business context — requiring analysts to override and calibrate.', experienceImpact: -2, status: 'Validated' },
+  { id: 'ins-15', projectId: PROJECT_ID, title: 'Informational AI tasks blur the line with compliance failures', description: 'AI analysis generates both failure tasks (\'this claim is unsupported\') and informational tasks (\'check your playbook for X requirement we can\'t verify\'). Analysts must distinguish between issues that block approval vs. items for awareness — a cognitive burden that grows with volume.', experienceImpact: -1, status: 'Validated' },
+  { id: 'ins-16', projectId: PROJECT_ID, title: 'AI analysis creates verification burden instead of saving time', description: 'Analysts either over-trust the AI and rubber-stamp its output — dangerous in a high-liability domain — or distrust it entirely and redo the analysis manually. The decision tree visualization adds transparency but also cognitive load: analysts must now evaluate the AI\'s reasoning path on top of the document itself, sometimes spending more time verifying the AI than the original review would have taken.', experienceImpact: -2, status: 'Validated' },
+  { id: 'ins-17', projectId: PROJECT_ID, title: 'Structured feedback flattens the nuance compliance work requires', description: 'Each compliance finding has different severity, context-dependency, and urgency. Structured feedback formats flatten this into a uniform list, making it hard for marketing to distinguish between "this violates federal law" and "this is a conservative suggestion." The result is either panicked over-correction on minor points or dangerously ignored feedback on critical ones.', experienceImpact: -2, status: 'Validated' },
+  { id: 'ins-18', projectId: PROJECT_ID, title: 'Compliance visualization overwhelms non-expert stakeholders', description: 'The decision tree is designed around regulatory logic that compliance analysts understand intuitively. When shared with marketing or product teams, it creates confusion rather than clarity — they see branching nodes and legal terminology but can\'t extract actionable guidance. The analyst ends up explaining the tool instead of explaining the compliance issue, adding a new translation layer.', experienceImpact: -2, status: 'Validated' },
+  { id: 'ins-19', projectId: PROJECT_ID, title: 'Dual AI-and-analyst authority undermines stakeholder trust', description: 'When analysts override AI check results and then present both the AI\'s findings and their own adjustments, stakeholders struggle with whose judgment to trust. Marketing asks "why did you override the AI?" or "why should I trust you over the AI?" instead of engaging with the compliance issue itself. The conversation becomes about the tool\'s reliability rather than the actual risk.', experienceImpact: -2, status: 'Validated' },
 ];
 
 const opportunities: Opportunity[] = [
-  { id: 'opp-1', projectId: PROJECT_ID, title: 'Embed compliance in campaign briefs', description: 'Add a compliance checklist to the campaign brief template so teams self-screen before submission. Surface relevant rules and past precedent at the brief stage so issues are caught before creative work begins.', status: 'Under Review' },
-  { id: 'opp-2', projectId: PROJECT_ID, title: 'Build a precedent decision database', description: 'Create a searchable living library of past compliance decisions — "How did we handle claims like this before? What wording did we approve last time?" — with rationale, outcomes, and regulatory citations.', status: 'Prioritized' },
-  { id: 'opp-3', projectId: PROJECT_ID, title: 'Plain-language feedback templates', description: 'Develop templates that auto-translate regulatory requirements into marketing-friendly language. Not raw legal text, but practical rules: "You can say this," "You must avoid that," "Here are safe examples."', status: 'Under Review' },
-  { id: 'opp-4', projectId: PROJECT_ID, title: 'AI-assisted pre-screening', description: 'Use NLP to flag common compliance issues (trigger words, missing disclosures, unsupported claims) before human review, reducing volume by ~30% and catching the obvious stuff so analysts focus on nuanced calls.', status: 'New' },
-  { id: 'opp-5', projectId: PROJECT_ID, title: 'Automated version control alerts', description: 'Monitor published assets for unauthorized changes after compliance approval. Visual diffing: show the PDF approved vs. the screenshot of the webpage that went live, highlighting differences.', status: 'New' },
-  { id: 'opp-6', projectId: PROJECT_ID, title: '"Grammarly for Compliance"', description: 'A browser extension that highlights risky words (e.g., "free," "guaranteed," "best-in-class") inside marketing tools (Google Docs, HubSpot, Figma) as teams type, suggesting safer alternatives before materials ever reach compliance.', status: 'New' },
-  { id: 'opp-7', projectId: PROJECT_ID, title: 'Audit trail in a box', description: 'One-button export of all approvals related to a campaign — the conversation, the diffs, the substantiation, and the final sign-off — ready for auditors. Eliminate the end-of-day manual logging burden.', status: 'New' },
-  { id: 'opp-8', projectId: PROJECT_ID, title: 'Regulatory change monitoring', description: 'Automated monitoring of regulatory updates from FTC, CFPB, state AGs, and industry bodies, connected to active campaigns and existing guidelines to surface impact. Replace newsletters and RSS feeds.', status: 'New' },
-  { id: 'opp-9', projectId: PROJECT_ID, title: 'Early gated feedback for submitters', description: 'Apply broad compliance rules automatically and return clear-cut issues directly to marketing submitters for self-correction before formal compliance review begins. Let them iterate on easy fixes themselves.', status: 'Prioritized' },
-  { id: 'opp-10', projectId: PROJECT_ID, title: 'Secure compliance communication channel', description: 'Replace fragmented Slack/email chains with a secure, auditable communication platform purpose-built for compliance discussions — preventing accidental exposure of sensitive screening data to wrong parties.', status: 'New' },
+  { id: 'opp-11', projectId: PROJECT_ID, title: 'Intuitive decision tree visualization for AI analysis', description: 'Design the AI compliance analysis as an explorable decision tree that shows the analyst each check the AI performed, the branching logic it followed, and where it flagged issues. Make the AI\'s reasoning transparent and navigable rather than a black-box list of comments.', status: 'Prioritized' },
+  { id: 'opp-12', projectId: PROJECT_ID, title: 'Analyst override of AI check results', description: 'Allow compliance analysts to override individual AI check results based on their professional judgment — e.g. accepting a claim the AI flagged, or flagging something the AI passed. Track overrides in the audit trail with rationale for traceability and organizational learning.', status: 'Prioritized' },
+  { id: 'opp-13', projectId: PROJECT_ID, title: 'In-visualization communication to marketing', description: 'Enable analysts to annotate compliance results and send structured, plain-language instructions to marketing directly from the decision tree visualization. Marketing receives clear, contextual guidance tied to specific issues rather than disconnected email feedback.', status: 'Prioritized' },
 ];
 
 // --- Lane Items (connecting insights/opportunities to steps) ---
@@ -218,7 +217,7 @@ const laneItems: LaneItem[] = [
   { id: 'li-p-1', laneId: 'lane-pains', stepId: 'step-0-0', refType: 'insight', refId: 'ins-1' },
   { id: 'li-p-3', laneId: 'lane-pains', stepId: 'step-1-0', refType: 'insight', refId: 'ins-2' },
   { id: 'li-p-4', laneId: 'lane-pains', stepId: 'step-2-3', refType: 'insight', refId: 'ins-3' },
-  { id: 'li-p-5', laneId: 'lane-pains', stepId: 'step-2-2', refType: 'insight', refId: 'ins-4' },
+  { id: 'li-p-5', laneId: 'lane-pains', stepId: 'step-2-3', refType: 'insight', refId: 'ins-4' },
   { id: 'li-p-6', laneId: 'lane-pains', stepId: 'step-3-0', refType: 'insight', refId: 'ins-5' },
   { id: 'li-p-7', laneId: 'lane-pains', stepId: 'step-4-2', refType: 'insight', refId: 'ins-6' },
   { id: 'li-p-8', laneId: 'lane-pains', stepId: 'step-6-0', refType: 'insight', refId: 'ins-7' },
@@ -228,28 +227,28 @@ const laneItems: LaneItem[] = [
   { id: 'li-p-12', laneId: 'lane-pains', stepId: 'step-3-0', refType: 'insight', refId: 'ins-9' },
   { id: 'li-p-13', laneId: 'lane-pains', stepId: 'step-0-0', refType: 'insight', refId: 'ins-10' },
   { id: 'li-p-15', laneId: 'lane-pains', stepId: 'step-1-1', refType: 'insight', refId: 'ins-10' },
-  { id: 'li-p-16', laneId: 'lane-pains', stepId: 'step-2-1', refType: 'insight', refId: 'ins-11' },
+  { id: 'li-p-16', laneId: 'lane-pains', stepId: 'step-2-3', refType: 'insight', refId: 'ins-11' },
   { id: 'li-p-17', laneId: 'lane-pains', stepId: 'step-1-1', refType: 'insight', refId: 'ins-12' },
   { id: 'li-p-18', laneId: 'lane-pains', stepId: 'step-2-0', refType: 'insight', refId: 'ins-12' },
   { id: 'li-p-19', laneId: 'lane-pains', stepId: 'step-3-0', refType: 'insight', refId: 'ins-13' },
   { id: 'li-p-20', laneId: 'lane-pains', stepId: 'step-4-0', refType: 'insight', refId: 'ins-13' },
 
-  // Opportunities lane
-  { id: 'li-o-1', laneId: 'lane-opportunities', stepId: 'step-0-0', refType: 'opportunity', refId: 'opp-1' },
-  { id: 'li-o-3', laneId: 'lane-opportunities', stepId: 'step-2-2', refType: 'opportunity', refId: 'opp-2' },
-  { id: 'li-o-4', laneId: 'lane-opportunities', stepId: 'step-3-0', refType: 'opportunity', refId: 'opp-3' },
-  { id: 'li-o-5', laneId: 'lane-opportunities', stepId: 'step-3-1', refType: 'opportunity', refId: 'opp-3' },
-  { id: 'li-o-6', laneId: 'lane-opportunities', stepId: 'step-1-0', refType: 'opportunity', refId: 'opp-4' },
-  { id: 'li-o-7', laneId: 'lane-opportunities', stepId: 'step-2-0', refType: 'opportunity', refId: 'opp-4' },
-  { id: 'li-o-8', laneId: 'lane-opportunities', stepId: 'step-6-1', refType: 'opportunity', refId: 'opp-5' },
-  { id: 'li-o-9', laneId: 'lane-opportunities', stepId: 'step-0-0', refType: 'opportunity', refId: 'opp-6' },
-  { id: 'li-o-11', laneId: 'lane-opportunities', stepId: 'step-5-2', refType: 'opportunity', refId: 'opp-7' },
-  { id: 'li-o-12', laneId: 'lane-opportunities', stepId: 'step-6-2', refType: 'opportunity', refId: 'opp-8' },
-  { id: 'li-o-13', laneId: 'lane-opportunities', stepId: 'step-0-0', refType: 'opportunity', refId: 'opp-9' },
-  { id: 'li-o-14', laneId: 'lane-opportunities', stepId: 'step-1-0', refType: 'opportunity', refId: 'opp-9' },
-  { id: 'li-o-15', laneId: 'lane-opportunities', stepId: 'step-3-0', refType: 'opportunity', refId: 'opp-10' },
-  { id: 'li-o-16', laneId: 'lane-opportunities', stepId: 'step-4-0', refType: 'opportunity', refId: 'opp-10' },
-  { id: 'li-o-17', laneId: 'lane-opportunities', stepId: 'step-6-0', refType: 'opportunity', refId: 'opp-5' },
+  // Pains for opportunity steps (why experience is still negative despite opportunities)
+  { id: 'li-p-23', laneId: 'lane-pains', stepId: 'step-2-0', refType: 'insight', refId: 'ins-16' },
+  { id: 'li-p-24', laneId: 'lane-pains', stepId: 'step-3-1', refType: 'insight', refId: 'ins-17' },
+  { id: 'li-p-25', laneId: 'lane-pains', stepId: 'step-4-0', refType: 'insight', refId: 'ins-18' },
+  { id: 'li-p-26', laneId: 'lane-pains', stepId: 'step-4-1', refType: 'insight', refId: 'ins-19' },
+
+  // Opportunities lane — AI analysis flow
+
+  { id: 'li-p-21', laneId: 'lane-pains', stepId: 'step-2-2', refType: 'insight', refId: 'ins-14' },
+  { id: 'li-p-22', laneId: 'lane-pains', stepId: 'step-2-1', refType: 'insight', refId: 'ins-15' },
+  { id: 'li-o-18', laneId: 'lane-opportunities', stepId: 'step-2-0', refType: 'opportunity', refId: 'opp-11' },
+  { id: 'li-o-19', laneId: 'lane-opportunities', stepId: 'step-4-0', refType: 'opportunity', refId: 'opp-11' },
+  { id: 'li-o-20', laneId: 'lane-opportunities', stepId: 'step-2-2', refType: 'opportunity', refId: 'opp-12' },
+  { id: 'li-o-21', laneId: 'lane-opportunities', stepId: 'step-4-1', refType: 'opportunity', refId: 'opp-12' },
+  { id: 'li-o-22', laneId: 'lane-opportunities', stepId: 'step-3-0', refType: 'opportunity', refId: 'opp-13' },
+  { id: 'li-o-23', laneId: 'lane-opportunities', stepId: 'step-3-1', refType: 'opportunity', refId: 'opp-13' },
 ];
 
 // Generate touchpoint lane items from step data — one card per touchpoint
@@ -412,6 +411,132 @@ async function migrateConsolidateSteps() {
   });
 }
 
+async function migrateAIAnalysisFlow() {
+  // Check if migration already ran by looking for a new insight
+  const existing = await db.insights.get('ins-14');
+  if (existing) return;
+
+  await db.transaction('rw',
+    [db.steps, db.insights, db.opportunities, db.laneItems],
+    async () => {
+      // Update step names, touchpoints, experienceScores, momentOfTruth for phases 2-4
+      const stepUpdates: Record<string, Partial<Step>> = {
+        'step-2-0': { name: 'Review AI compliance analysis visualization', touchpoints: ['Decision tree view', 'AI analysis summary', 'Document viewer'], experienceScore: 1.0, momentOfTruth: false },
+        'step-2-1': { name: 'Drill into flagged issues and AI comments', touchpoints: ['Anchored comments', 'Document highlights', 'Check detail panels'], experienceScore: 0.5, momentOfTruth: false },
+        'step-2-2': { name: 'Override AI check results where judgment differs', touchpoints: ['Override controls', 'Analyst notes', 'Decision tree nodes'], experienceScore: -0.5, momentOfTruth: true },
+        'step-2-3': { name: 'Cross-reference substantiation and past precedent', touchpoints: ['Substantiation library', 'Shared Drive', 'Precedent search'], experienceScore: -0.5, momentOfTruth: false },
+        'step-2-4': { name: 'Interpret ambiguous regulations', touchpoints: ['Regulatory PDFs', 'FTC/CFPB guidance', 'Law firm newsletters'], experienceScore: -2.0, momentOfTruth: true },
+        'step-2-5': { name: 'Calibrate to org risk tolerance and decide escalation', touchpoints: ['Internal playbooks', 'Risk framework docs', 'Email', 'Slack DMs'], experienceScore: -1.0, momentOfTruth: false },
+        'step-3-0': { name: 'Annotate compliance results for marketing', touchpoints: ['Visualization annotations', 'Plain-language templates', 'Comment anchors'], experienceScore: 1.0, momentOfTruth: true },
+        'step-3-1': { name: 'Send structured feedback from compliance view', touchpoints: ['In-app messaging', 'Structured feedback view', 'Email notifications'], experienceScore: 1.5, momentOfTruth: true },
+        'step-4-0': { name: 'Walk marketing through compliance visualization', touchpoints: ['Shared visualization link', 'Screen share', 'Video calls'], experienceScore: 0.5, momentOfTruth: false },
+        'step-4-1': { name: 'Explain AI rationale and analyst overrides', touchpoints: ['Decision tree walkthrough', 'Override annotations', 'Presentations'], experienceScore: 0.0, momentOfTruth: false },
+        'step-4-2': { name: 'Navigate pushback from stakeholders', touchpoints: ['Meetings', 'Slack', 'Email threads'], experienceScore: -1.5, momentOfTruth: true },
+      };
+      for (const [id, update] of Object.entries(stepUpdates)) {
+        await db.steps.update(id, update);
+      }
+
+      // Add new insights
+      const newInsights = insights.filter(i => ['ins-14', 'ins-15'].includes(i.id));
+      await db.insights.bulkAdd(newInsights);
+
+      // Add new opportunities
+      const newOpps = opportunities.filter(o => ['opp-11', 'opp-12', 'opp-13'].includes(o.id));
+      await db.opportunities.bulkAdd(newOpps);
+
+      // Remap existing lane items to new step meanings
+      await db.laneItems.update('li-p-5', { stepId: 'step-2-3' });   // ins-4 → cross-ref step
+      await db.laneItems.update('li-p-16', { stepId: 'step-2-3' });  // ins-11 → cross-ref step
+      await db.laneItems.update('li-o-3', { stepId: 'step-2-3' });   // opp-2 → cross-ref step
+
+      // Add new lane items for new insights/opportunities
+      const newLaneItemIds = [
+        'li-p-21', 'li-p-22',
+        'li-o-18', 'li-o-19', 'li-o-20', 'li-o-21', 'li-o-22', 'li-o-23',
+      ];
+      const newItems = laneItems.filter(li => newLaneItemIds.includes(li.id));
+      await db.laneItems.bulkAdd(newItems);
+
+      // Update touchpoint lane items for phases 2-4
+      const phase2to4StepIds = [
+        'step-2-0', 'step-2-1', 'step-2-2', 'step-2-3', 'step-2-4', 'step-2-5',
+        'step-3-0', 'step-3-1',
+        'step-4-0', 'step-4-1', 'step-4-2',
+      ];
+      // Delete old touchpoint lane items for these steps
+      const allTpItems = await db.laneItems.where('laneId').equals('lane-touchpoints').toArray();
+      const toDelete = allTpItems.filter(li => phase2to4StepIds.includes(li.stepId)).map(li => li.id);
+      await db.laneItems.bulkDelete(toDelete);
+
+      // Add new touchpoint lane items from updated phasesData
+      const newTpItems: LaneItem[] = [];
+      let counter = 100; // offset to avoid ID collisions
+      for (const pd of phasesData) {
+        if (!['phase-2', 'phase-3', 'phase-4'].includes(pd.phase.id)) continue;
+        for (const step of pd.steps) {
+          if (step.touchpoints && step.touchpoints.length > 0) {
+            for (const tp of step.touchpoints) {
+              counter++;
+              newTpItems.push({
+                id: `li-tp-${counter}`,
+                laneId: 'lane-touchpoints',
+                stepId: step.id,
+                refType: 'text',
+                content: tp,
+              });
+            }
+          }
+        }
+      }
+      await db.laneItems.bulkAdd(newTpItems);
+    }
+  );
+}
+
+async function migrateNegativeOpportunityScores() {
+  // Check if migration already ran by looking for ins-16
+  const existing = await db.insights.get('ins-16');
+  if (existing) return;
+
+  await db.transaction('rw', [db.steps, db.insights, db.laneItems], async () => {
+    // Lower experience scores — opportunity steps are still painful
+    await db.steps.update('step-2-0', { experienceScore: -0.5 });
+    await db.steps.update('step-3-0', { experienceScore: -0.5 });
+    await db.steps.update('step-3-1', { experienceScore: -0.5 });
+    await db.steps.update('step-4-0', { experienceScore: -1.0 });
+    await db.steps.update('step-4-1', { experienceScore: -0.5 });
+
+    // Add new insights explaining why
+    const newInsightIds = ['ins-16', 'ins-17', 'ins-18', 'ins-19'];
+    const newInsights = insights.filter(i => newInsightIds.includes(i.id));
+    await db.insights.bulkAdd(newInsights);
+
+    // Map new insights to steps as pain cards
+    const newLaneItemIds = ['li-p-23', 'li-p-24', 'li-p-25', 'li-p-26'];
+    const newItems = laneItems.filter(li => newLaneItemIds.includes(li.id));
+    await db.laneItems.bulkAdd(newItems);
+  });
+}
+
+async function migrateDeleteOldOpportunities() {
+  // Check if migration already ran — opp-1 should no longer exist
+  const existing = await db.opportunities.get('opp-1');
+  if (!existing) return;
+
+  await db.transaction('rw', [db.opportunities, db.laneItems], async () => {
+    const oldOppIds = ['opp-1', 'opp-2', 'opp-3', 'opp-4', 'opp-5', 'opp-6', 'opp-7', 'opp-8', 'opp-9', 'opp-10'];
+    await db.opportunities.bulkDelete(oldOppIds);
+
+    // Delete lane items referencing old opportunities
+    const oldOppLaneItemIds = [
+      'li-o-1', 'li-o-3', 'li-o-4', 'li-o-5', 'li-o-6', 'li-o-7', 'li-o-8',
+      'li-o-9', 'li-o-11', 'li-o-12', 'li-o-13', 'li-o-14', 'li-o-15', 'li-o-16', 'li-o-17',
+    ];
+    await db.laneItems.bulkDelete(oldOppLaneItemIds);
+  });
+}
+
 export async function seedDatabase() {
   const count = await db.projects.count();
   if (count > 0) {
@@ -420,6 +545,9 @@ export async function seedDatabase() {
     await migratePersonaAvatar();
     await migrateEnrichFromResearch();
     await migrateConsolidateSteps();
+    await migrateAIAnalysisFlow();
+    await migrateDeleteOldOpportunities();
+    await migrateNegativeOpportunityScores();
     return;
   }
 
