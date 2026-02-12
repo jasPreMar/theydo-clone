@@ -89,19 +89,19 @@ export function ExperienceLaneRow({ lane, steps, stepPhaseColors, persona }: Pro
   return (
     <>
       {/* Lane label cell */}
-      <div className="group flex flex-col items-center justify-center gap-2 border-b border-r border-gray-200 bg-gray-50 px-3 py-3 dark:border-gray-700 dark:bg-gray-800">
+      <div className="group flex flex-col items-start gap-2 border-b border-r border-gray-200 bg-gray-50 px-3 py-3 dark:border-gray-700 dark:bg-gray-800">
         <span className="text-sm font-medium text-gray-600 dark:text-gray-400">{lane.name}</span>
         {persona && (
           <button
             onClick={() => navigate(`/persona/${persona.id}`)}
-            className="flex flex-col items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2.5 shadow-sm transition-colors hover:bg-gray-50 hover:shadow dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600"
+            className="flex flex-col items-start gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2.5 shadow-sm transition-colors hover:bg-gray-50 hover:shadow dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600"
           >
             <img
               src={persona.avatarUrl}
               alt={persona.title}
               className="h-10 w-10 rounded-full object-cover ring-2 ring-white shadow-sm dark:ring-gray-700"
             />
-            <span className="text-xs font-medium text-gray-700 text-center leading-tight dark:text-gray-300">{persona.title}</span>
+            <span className="text-xs font-medium text-gray-700 leading-tight dark:text-gray-300">{persona.title}</span>
           </button>
         )}
         <button
