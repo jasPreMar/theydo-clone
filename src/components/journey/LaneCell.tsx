@@ -5,11 +5,15 @@ interface Props {
   items: LaneItem[];
   insightsMap: Map<string, Insight>;
   opportunitiesMap: Map<string, Opportunity>;
+  phaseColor?: string;
 }
 
-export function LaneCell({ items, insightsMap, opportunitiesMap }: Props) {
+export function LaneCell({ items, insightsMap, opportunitiesMap, phaseColor }: Props) {
   return (
-    <div className="flex min-h-[48px] flex-col gap-1 border-b border-r border-gray-200 p-1.5">
+    <div
+      className="flex min-h-[80px] flex-col gap-2 border-b border-r border-gray-200 p-2"
+      style={{ backgroundColor: phaseColor ? phaseColor + '12' : undefined }}
+    >
       {items.map((item) => {
         if (item.refType === 'text') {
           return <CardChip key={item.id} refType="text" content={item.content} itemId={item.id} />;

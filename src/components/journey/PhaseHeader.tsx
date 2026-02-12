@@ -27,14 +27,14 @@ export function PhaseHeader({ phase, stepCount }: Props) {
 
   return (
     <div
-      className="flex items-center justify-between rounded-t-lg px-3 py-2"
+      className="group flex items-center justify-between rounded-t-lg px-4 py-2.5"
       style={{
         gridColumn: `span ${stepCount}`,
         backgroundColor: phase.color + '22',
         borderBottom: `3px solid ${phase.color}`,
       }}
     >
-      <span className="text-xs font-semibold" style={{ color: phase.color }}>
+      <span className="text-sm font-semibold" style={{ color: phase.color }}>
         {phase.name}
       </span>
       <button
@@ -43,7 +43,7 @@ export function PhaseHeader({ phase, stepCount }: Props) {
         style={{ color: phase.color }}
         title="Add step"
       >
-        <Plus className="h-3.5 w-3.5" />
+        <Plus className="h-4 w-4" />
       </button>
     </div>
   );

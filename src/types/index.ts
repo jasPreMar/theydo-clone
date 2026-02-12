@@ -83,6 +83,7 @@ export interface Persona {
   role: string;
   description: string;
   primaryGoal: string;
+  avatarUrl?: string;
   sees: string[];
   says: string[];
   does: string[];

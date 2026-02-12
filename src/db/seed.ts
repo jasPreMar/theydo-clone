@@ -22,6 +22,7 @@ const persona: Persona = {
   description:
     'A mid-career compliance professional responsible for reviewing marketing materials, advertising claims, and customer-facing copy for regulatory adherence.',
   primaryGoal: 'Minimize regulatory risk while enabling business teams to move forward',
+  avatarUrl: '/persona-avatar.jpeg',
   sees: [
     'Marketing copy drafts arriving with tight deadlines',
     'Regulatory updates and guidance documents from agencies',
@@ -207,20 +208,22 @@ const laneItems: LaneItem[] = [
   { id: 'li-o-8', laneId: 'lane-opportunities', stepId: 'step-6-1', refType: 'opportunity', refId: 'opp-5' },
 ];
 
-// Generate touchpoint lane items from step data
+// Generate touchpoint lane items from step data — one card per touchpoint
 const touchpointLaneItems: LaneItem[] = [];
 let tpCounter = 0;
 for (const pd of phasesData) {
   for (const step of pd.steps) {
     if (step.touchpoints && step.touchpoints.length > 0) {
-      tpCounter++;
-      touchpointLaneItems.push({
-        id: `li-tp-${tpCounter}`,
-        laneId: 'lane-touchpoints',
-        stepId: step.id,
-        refType: 'text',
-        content: step.touchpoints.join(', '),
-      });
+      for (const tp of step.touchpoints) {
+        tpCounter++;
+        touchpointLaneItems.push({
+          id: `li-tp-${tpCounter}`,
+          laneId: 'lane-touchpoints',
+          stepId: step.id,
+          refType: 'text',
+          content: tp,
+        });
+      }
     }
   }
 }
@@ -266,11 +269,19 @@ async function migrateExperienceLane() {
   });
 }
 
+async function migratePersonaAvatar() {
+  const p = await db.personas.get(PERSONA_ID);
+  if (p && p.avatarUrl !== '/persona-avatar.jpeg') {
+    await db.personas.update(PERSONA_ID, { avatarUrl: '/persona-avatar.jpeg' });
+  }
+}
+
 export async function seedDatabase() {
   const count = await db.projects.count();
   if (count > 0) {
     // Existing DB — run migrations for new features
     await migrateExperienceLane();
+    await migratePersonaAvatar();
     return;
   }
 

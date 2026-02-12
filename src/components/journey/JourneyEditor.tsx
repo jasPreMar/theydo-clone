@@ -1,14 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../../db/database';
-import { useJourney, usePhases, useSteps, useLanes } from '../../hooks/useDB';
+import { useJourney, usePhases, useSteps, useLanes, usePersonas } from '../../hooks/useDB';
 import { PhaseHeader } from './PhaseHeader';
 import { StepCell } from './StepCell';
 import { LaneRow } from './LaneRow';
 import { ExperienceLaneRow } from './ExperienceLaneRow';
 import { AddLaneButton } from './AddLaneButton';
 import { EmptyState } from '../common/EmptyState';
-import type { Phase, Insight, Opportunity, LaneItem } from '../../types';
+import type { Phase, Insight, Opportunity, LaneItem, Persona } from '../../types';
 
 export function JourneyEditor() {
   const { id } = useParams<{ id: string }>();
@@ -16,6 +16,7 @@ export function JourneyEditor() {
   const phases = usePhases(id);
   const allSteps = useSteps(id);
   const lanes = useLanes(id);
+  const personas = usePersonas();
 
   const laneIds = lanes.map((l) => l.id);
   const laneItems = useLiveQuery(
@@ -57,20 +58,31 @@ export function JourneyEditor() {
     itemsByLane.set(item.laneId, arr);
   }
 
-  const gridCols = `200px repeat(${totalSteps}, minmax(140px, 1fr))`;
+  // Map each step to its phase color for column tinting
+  const stepPhaseColors = new Map<string, string>();
+  for (const phase of phases) {
+    for (const step of stepsByPhase.get(phase.id) ?? []) {
+      stepPhaseColors.set(step.id, phase.color);
+    }
+  }
+
+  const gridCols = `200px repeat(${totalSteps}, minmax(240px, 1fr))`;
+
+  // Use the first persona in the project for the journey
+  const persona: Persona | undefined = personas.find(
+    (p) => p.projectId === journey.projectId
+  );
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm text-gray-500">{journey.description}</p>
-        </div>
+      <div>
+        <p className="text-sm text-gray-500">{journey.description}</p>
       </div>
 
       <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-sm">
         <div style={{ display: 'grid', gridTemplateColumns: gridCols }} className="min-w-fit">
           {/* Phase headers row */}
-          <div className="border-b border-r border-gray-200 bg-gray-50 px-3 py-2 text-xs font-medium text-gray-500">
+          <div className="border-b border-r border-gray-200 bg-gray-50 px-4 py-2.5 text-sm font-medium text-gray-500">
             Phase
           </div>
           {phases.map((phase: Phase) => {
@@ -81,11 +93,11 @@ export function JourneyEditor() {
           })}
 
           {/* Steps row */}
-          <div className="border-b border-r border-gray-200 bg-gray-50 px-3 py-2 text-xs font-medium text-gray-500">
+          <div className="border-b border-r border-gray-200 bg-gray-50 px-4 py-2.5 text-sm font-medium text-gray-500">
             Steps
           </div>
           {orderedSteps.map((step) => (
-            <StepCell key={step.id} step={step} />
+            <StepCell key={step.id} step={step} phaseColor={stepPhaseColors.get(step.id)} />
           ))}
 
           {/* Lane rows */}
@@ -95,6 +107,8 @@ export function JourneyEditor() {
                 key={lane.id}
                 lane={lane}
                 steps={orderedSteps}
+                stepPhaseColors={stepPhaseColors}
+                persona={persona}
               />
             ) : (
               <LaneRow
@@ -104,6 +118,7 @@ export function JourneyEditor() {
                 laneItems={itemsByLane.get(lane.id) ?? []}
                 insightsMap={insightsMap}
                 opportunitiesMap={opportunitiesMap}
+                stepPhaseColors={stepPhaseColors}
               />
             )
           )}

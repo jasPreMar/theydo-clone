@@ -1,13 +1,53 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+import {
+  Lightbulb, Zap, Wrench, FileText,
+  Mail, MessageSquare, Monitor, Smartphone,
+  LayoutDashboard, ClipboardList, Database, Shield,
+  Users, BookOpen, Eye, FolderOpen, PenLine, Presentation,
+  GraduationCap, GitBranch,
+} from 'lucide-react';
 import { db } from '../../db/database';
 import type { Insight, Opportunity } from '../../types';
 
 const chipColors: Record<string, string> = {
-  insight: 'bg-red-50 border-red-200 text-red-700',
-  opportunity: 'bg-emerald-50 border-emerald-200 text-emerald-700',
+  insight: 'bg-red-50 border-red-200 text-red-800',
+  opportunity: 'bg-violet-50 border-violet-200 text-violet-800',
   solution: 'bg-blue-50 border-blue-200 text-blue-700',
   text: 'bg-gray-50 border-gray-200 text-gray-600',
 };
+
+const typeIcons: Record<string, React.ReactNode> = {
+  insight: <Lightbulb className="h-3.5 w-3.5 shrink-0 text-red-400" />,
+  opportunity: <Zap className="h-3.5 w-3.5 shrink-0 text-violet-400" />,
+  solution: <Wrench className="h-3.5 w-3.5 shrink-0 text-blue-400" />,
+};
+
+// Keyword → icon mapping for touchpoint/text cards
+const touchpointIcons: [RegExp, React.ReactNode][] = [
+  [/email/i, <Mail className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/slack|chat|messag/i, <MessageSquare className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/cms|monitor|live.*monitor|asset.*monitor/i, <Eye className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/dashboard|queue/i, <LayoutDashboard className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/ticket|project.*manage|assign/i, <ClipboardList className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/database|substantiat|precedent.*lib/i, <Database className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/regulat|compliance|legal|risk|escalat/i, <Shield className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/meeting/i, <Users className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/presentation/i, <Presentation className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/training/i, <GraduationCap className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/review.*tool|document.*editor|shared.*doc|review.*comment/i, <PenLine className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/archive/i, <FolderOpen className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/brief|template/i, <BookOpen className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/approv/i, <GitBranch className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/creative|platform|tool/i, <Monitor className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+  [/app|mobile/i, <Smartphone className="h-3.5 w-3.5 shrink-0 text-gray-400" />],
+];
+
+function getTextIcon(content: string): React.ReactNode {
+  for (const [pattern, icon] of touchpointIcons) {
+    if (pattern.test(content)) return icon;
+  }
+  return <FileText className="h-3.5 w-3.5 shrink-0 text-gray-400" />;
+}
 
 interface Props {
   refType: string;
@@ -23,6 +63,8 @@ export function CardChip({ refType, data, content, itemId }: Props) {
   const colors = chipColors[refType] ?? chipColors.text;
 
   const title = data ? ('title' in data ? data.title : '') : content ?? '';
+
+  const icon = refType === 'text' ? getTextIcon(title) : typeIcons[refType];
 
   const autoResize = useCallback(() => {
     const ta = textareaRef.current;
@@ -78,24 +120,29 @@ export function CardChip({ refType, data, content, itemId }: Props) {
   return (
     <div
       onClick={handleClick}
-      className={`w-full rounded border px-2 py-1 text-left text-xs cursor-pointer ${colors}`}
+      className={`w-full rounded-lg border px-3 py-2.5 text-left text-sm cursor-pointer ${colors}`}
     >
-      {editing ? (
-        <textarea
-          ref={textareaRef}
-          value={editValue}
-          onChange={(e) => {
-            setEditValue(e.target.value);
-            autoResize();
-          }}
-          onBlur={save}
-          onKeyDown={handleKeyDown}
-          className="w-full resize-none bg-transparent outline-none text-xs leading-normal"
-          rows={1}
-        />
-      ) : (
-        <span>{title}</span>
-      )}
+      <div className="flex items-start gap-1.5">
+        {icon}
+        <div className="min-w-0 flex-1">
+          {editing ? (
+            <textarea
+              ref={textareaRef}
+              value={editValue}
+              onChange={(e) => {
+                setEditValue(e.target.value);
+                autoResize();
+              }}
+              onBlur={save}
+              onKeyDown={handleKeyDown}
+              className="w-full resize-none bg-transparent outline-none text-sm leading-normal font-medium"
+              rows={1}
+            />
+          ) : (
+            <span className="font-medium leading-snug">{title}</span>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

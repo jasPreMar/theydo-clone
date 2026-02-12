@@ -1,4 +1,4 @@
-import { Star } from 'lucide-react';
+import { Star, Diamond } from 'lucide-react';
 import type { Step } from '../../types';
 import { useUIStore } from '../../store/uiStore';
 import { db } from '../../db/database';
@@ -6,9 +6,10 @@ import { useState } from 'react';
 
 interface Props {
   step: Step;
+  phaseColor?: string;
 }
 
-export function StepCell({ step }: Props) {
+export function StepCell({ step, phaseColor }: Props) {
   const openPanel = useUIStore((s) => s.openPanel);
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(step.name);
@@ -24,12 +25,14 @@ export function StepCell({ step }: Props) {
 
   return (
     <div
-      className="flex min-h-[48px] cursor-pointer items-center gap-1 border-b border-r border-gray-200 bg-white px-2 py-1.5 text-xs hover:bg-gray-50"
+      className="flex min-h-[56px] cursor-pointer items-center gap-2 border-b border-r border-gray-200 px-3 py-2 text-sm transition-colors hover:brightness-95"
+      style={{ backgroundColor: phaseColor ? phaseColor + '15' : 'white' }}
       onClick={() => openPanel(step.id, 'step')}
     >
+      <Diamond className="h-3.5 w-3.5 shrink-0 text-gray-400" />
       {editing ? (
         <input
-          className="w-full rounded border border-indigo-300 px-1 py-0.5 text-xs focus:outline-none"
+          className="w-full rounded border border-indigo-300 px-1 py-0.5 text-sm focus:outline-none"
           value={name}
           onChange={(e) => setName(e.target.value)}
           onBlur={save}
@@ -39,7 +42,7 @@ export function StepCell({ step }: Props) {
         />
       ) : (
         <span
-          className="flex-1 truncate"
+          className="flex-1 leading-snug"
           onDoubleClick={(e) => {
             e.stopPropagation();
             setEditing(true);
