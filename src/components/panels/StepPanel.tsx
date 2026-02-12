@@ -11,6 +11,12 @@ function scoreToColor(score: number): string {
 
 export function StepPanel({ id }: { id: string }) {
   const step = useLiveQuery(() => db.steps.get(id), [id]);
+  const touchpoints = useLiveQuery(async () => {
+    const textLanes = await db.lanes.where('journeyId').equals(step?.journeyId ?? '').filter(l => l.type === 'text').toArray();
+    const textLaneIds = new Set(textLanes.map(l => l.id));
+    const items = await db.laneItems.where('stepId').equals(id).toArray();
+    return items.filter(i => i.refType === 'text' && textLaneIds.has(i.laneId));
+  }, [id, step?.journeyId]) ?? [];
   const [name, setName] = useState('');
 
   useEffect(() => {
@@ -57,13 +63,13 @@ export function StepPanel({ id }: { id: string }) {
         {step.momentOfTruth ? 'Moment of Truth' : 'Mark as Moment of Truth'}
       </button>
 
-      {step.touchpoints && step.touchpoints.length > 0 && (
+      {touchpoints.length > 0 && (
         <div>
           <label className="mb-1 block text-xs font-medium text-gray-500 dark:text-gray-400">Touchpoints</label>
           <div className="flex flex-wrap gap-1.5">
-            {step.touchpoints.map((tp, i) => (
-              <span key={i} className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-600 dark:bg-gray-600 dark:text-gray-300">
-                {tp}
+            {touchpoints.map((tp) => (
+              <span key={tp.id} className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-600 dark:bg-gray-600 dark:text-gray-300">
+                {tp.content}
               </span>
             ))}
           </div>

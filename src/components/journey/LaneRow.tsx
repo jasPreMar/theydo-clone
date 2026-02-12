@@ -47,6 +47,9 @@ export function LaneRow({ lane, steps, laneItems, insightsMap, opportunitiesMap,
           insightsMap={insightsMap}
           opportunitiesMap={opportunitiesMap}
           phaseColor={stepPhaseColors.get(step.id)}
+          laneId={lane.id}
+          stepId={step.id}
+          laneType={lane.type}
         />
       ))}
     </>
