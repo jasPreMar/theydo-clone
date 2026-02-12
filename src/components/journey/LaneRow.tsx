@@ -1,5 +1,7 @@
 import type { Lane, Step, LaneItem, Insight, Opportunity } from '../../types';
 import { LaneCell } from './LaneCell';
+import { X } from 'lucide-react';
+import { db } from '../../db/database';
 
 interface Props {
   lane: Lane;
@@ -17,10 +19,25 @@ export function LaneRow({ lane, steps, laneItems, insightsMap, opportunitiesMap 
     itemsByStep.set(item.stepId, arr);
   }
 
+  const deleteLane = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    await db.transaction('rw', [db.lanes, db.laneItems], async () => {
+      await db.laneItems.where('laneId').equals(lane.id).delete();
+      await db.lanes.delete(lane.id);
+    });
+  };
+
   return (
     <>
-      <div className="flex items-center border-b border-r border-gray-200 bg-gray-50 px-3 py-2 text-xs font-medium text-gray-600">
-        {lane.name}
+      <div className="group flex items-center border-b border-r border-gray-200 bg-gray-50 px-3 py-2 text-xs font-medium text-gray-600">
+        <span className="flex-1">{lane.name}</span>
+        <button
+          onClick={deleteLane}
+          className="ml-1 hidden rounded p-0.5 text-gray-400 hover:bg-gray-200 hover:text-gray-600 group-hover:block"
+          title="Delete lane"
+        >
+          <X className="h-3 w-3" />
+        </button>
       </div>
       {steps.map((step) => (
         <LaneCell

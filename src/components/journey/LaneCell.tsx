@@ -12,7 +12,7 @@ export function LaneCell({ items, insightsMap, opportunitiesMap }: Props) {
     <div className="flex min-h-[48px] flex-col gap-1 border-b border-r border-gray-200 p-1.5">
       {items.map((item) => {
         if (item.refType === 'text') {
-          return <CardChip key={item.id} refType="text" content={item.content} />;
+          return <CardChip key={item.id} refType="text" content={item.content} itemId={item.id} />;
         }
         if (item.refType === 'insight' && item.refId) {
           return <CardChip key={item.id} refType="insight" data={insightsMap.get(item.refId)} />;
