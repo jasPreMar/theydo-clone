@@ -115,9 +115,7 @@ const phasesData: PhaseData[] = [
   {
     phase: { id: 'phase-0', journeyId: JOURNEY_ID, name: 'Before — The Upstream Gap', color: '#94a3b8', order: 0 },
     steps: [
-      { id: 'step-0-0', phaseId: 'phase-0', name: 'Marketing develops creative without compliance input', order: 0, momentOfTruth: false, touchpoints: ['Figma', 'HubSpot', 'Creative briefs'], experienceScore: -1.5 },
-      { id: 'step-0-1', phaseId: 'phase-0', name: 'Compliance guidance unavailable at brief stage', order: 1, momentOfTruth: false, touchpoints: ['Brief templates', 'Google Docs'], experienceScore: -1.0 },
-      { id: 'step-0-2', phaseId: 'phase-0', name: 'Marketing delays or avoids involving compliance', order: 2, momentOfTruth: false, touchpoints: ['Slack', 'Email'], experienceScore: -1.5 },
+      { id: 'step-0-0', phaseId: 'phase-0', name: 'Marketing develops creative', order: 0, momentOfTruth: false, touchpoints: ['Figma', 'HubSpot', 'Creative briefs', 'Brief templates', 'Google Docs', 'Slack', 'Email'], experienceScore: -1.5 },
     ],
   },
   {
@@ -145,7 +143,6 @@ const phasesData: PhaseData[] = [
     steps: [
       { id: 'step-3-0', phaseId: 'phase-3', name: 'Translate legal risk into plain language', order: 0, momentOfTruth: true, touchpoints: ['Email', 'Google Docs comments', 'Slack'], experienceScore: 1.0 },
       { id: 'step-3-1', phaseId: 'phase-3', name: 'Write actionable feedback for marketing', order: 1, momentOfTruth: true, touchpoints: ['Google Docs', 'Email', 'Review templates'], experienceScore: 1.5 },
-      { id: 'step-3-2', phaseId: 'phase-3', name: 'Navigate the jargon gap', order: 2, momentOfTruth: false, touchpoints: ['Video calls', 'Slack', 'Meetings'], experienceScore: -0.5 },
     ],
   },
   {
@@ -219,44 +216,38 @@ const laneItems: LaneItem[] = [
 
   // Pains lane — insights mapped to relevant steps
   { id: 'li-p-1', laneId: 'lane-pains', stepId: 'step-0-0', refType: 'insight', refId: 'ins-1' },
-  { id: 'li-p-2', laneId: 'lane-pains', stepId: 'step-0-2', refType: 'insight', refId: 'ins-1' },
   { id: 'li-p-3', laneId: 'lane-pains', stepId: 'step-1-0', refType: 'insight', refId: 'ins-2' },
   { id: 'li-p-4', laneId: 'lane-pains', stepId: 'step-2-3', refType: 'insight', refId: 'ins-3' },
   { id: 'li-p-5', laneId: 'lane-pains', stepId: 'step-2-2', refType: 'insight', refId: 'ins-4' },
-  { id: 'li-p-6', laneId: 'lane-pains', stepId: 'step-3-2', refType: 'insight', refId: 'ins-5' },
+  { id: 'li-p-6', laneId: 'lane-pains', stepId: 'step-3-0', refType: 'insight', refId: 'ins-5' },
   { id: 'li-p-7', laneId: 'lane-pains', stepId: 'step-4-2', refType: 'insight', refId: 'ins-6' },
   { id: 'li-p-8', laneId: 'lane-pains', stepId: 'step-6-0', refType: 'insight', refId: 'ins-7' },
-  // New insight mappings
   { id: 'li-p-9', laneId: 'lane-pains', stepId: 'step-5-0', refType: 'insight', refId: 'ins-8' },
   { id: 'li-p-10', laneId: 'lane-pains', stepId: 'step-6-1', refType: 'insight', refId: 'ins-8' },
   { id: 'li-p-11', laneId: 'lane-pains', stepId: 'step-1-0', refType: 'insight', refId: 'ins-9' },
   { id: 'li-p-12', laneId: 'lane-pains', stepId: 'step-3-0', refType: 'insight', refId: 'ins-9' },
   { id: 'li-p-13', laneId: 'lane-pains', stepId: 'step-0-0', refType: 'insight', refId: 'ins-10' },
-  { id: 'li-p-14', laneId: 'lane-pains', stepId: 'step-0-2', refType: 'insight', refId: 'ins-10' },
   { id: 'li-p-15', laneId: 'lane-pains', stepId: 'step-1-1', refType: 'insight', refId: 'ins-10' },
   { id: 'li-p-16', laneId: 'lane-pains', stepId: 'step-2-1', refType: 'insight', refId: 'ins-11' },
   { id: 'li-p-17', laneId: 'lane-pains', stepId: 'step-1-1', refType: 'insight', refId: 'ins-12' },
   { id: 'li-p-18', laneId: 'lane-pains', stepId: 'step-2-0', refType: 'insight', refId: 'ins-12' },
-  { id: 'li-p-19', laneId: 'lane-pains', stepId: 'step-3-2', refType: 'insight', refId: 'ins-13' },
+  { id: 'li-p-19', laneId: 'lane-pains', stepId: 'step-3-0', refType: 'insight', refId: 'ins-13' },
   { id: 'li-p-20', laneId: 'lane-pains', stepId: 'step-4-0', refType: 'insight', refId: 'ins-13' },
 
   // Opportunities lane
   { id: 'li-o-1', laneId: 'lane-opportunities', stepId: 'step-0-0', refType: 'opportunity', refId: 'opp-1' },
-  { id: 'li-o-2', laneId: 'lane-opportunities', stepId: 'step-0-1', refType: 'opportunity', refId: 'opp-1' },
   { id: 'li-o-3', laneId: 'lane-opportunities', stepId: 'step-2-2', refType: 'opportunity', refId: 'opp-2' },
   { id: 'li-o-4', laneId: 'lane-opportunities', stepId: 'step-3-0', refType: 'opportunity', refId: 'opp-3' },
   { id: 'li-o-5', laneId: 'lane-opportunities', stepId: 'step-3-1', refType: 'opportunity', refId: 'opp-3' },
   { id: 'li-o-6', laneId: 'lane-opportunities', stepId: 'step-1-0', refType: 'opportunity', refId: 'opp-4' },
   { id: 'li-o-7', laneId: 'lane-opportunities', stepId: 'step-2-0', refType: 'opportunity', refId: 'opp-4' },
   { id: 'li-o-8', laneId: 'lane-opportunities', stepId: 'step-6-1', refType: 'opportunity', refId: 'opp-5' },
-  // New opportunity mappings
   { id: 'li-o-9', laneId: 'lane-opportunities', stepId: 'step-0-0', refType: 'opportunity', refId: 'opp-6' },
-  { id: 'li-o-10', laneId: 'lane-opportunities', stepId: 'step-0-2', refType: 'opportunity', refId: 'opp-6' },
   { id: 'li-o-11', laneId: 'lane-opportunities', stepId: 'step-5-2', refType: 'opportunity', refId: 'opp-7' },
   { id: 'li-o-12', laneId: 'lane-opportunities', stepId: 'step-6-2', refType: 'opportunity', refId: 'opp-8' },
-  { id: 'li-o-13', laneId: 'lane-opportunities', stepId: 'step-0-1', refType: 'opportunity', refId: 'opp-9' },
+  { id: 'li-o-13', laneId: 'lane-opportunities', stepId: 'step-0-0', refType: 'opportunity', refId: 'opp-9' },
   { id: 'li-o-14', laneId: 'lane-opportunities', stepId: 'step-1-0', refType: 'opportunity', refId: 'opp-9' },
-  { id: 'li-o-15', laneId: 'lane-opportunities', stepId: 'step-3-2', refType: 'opportunity', refId: 'opp-10' },
+  { id: 'li-o-15', laneId: 'lane-opportunities', stepId: 'step-3-0', refType: 'opportunity', refId: 'opp-10' },
   { id: 'li-o-16', laneId: 'lane-opportunities', stepId: 'step-4-0', refType: 'opportunity', refId: 'opp-10' },
   { id: 'li-o-17', laneId: 'lane-opportunities', stepId: 'step-6-0', refType: 'opportunity', refId: 'opp-5' },
 ];
@@ -367,9 +358,9 @@ async function migrateEnrichFromResearch() {
 
       // Add new lane items (pain mappings li-p-9 through li-p-20, opp mappings li-o-9 through li-o-17)
       const newLaneItemIds = [
-        'li-p-9', 'li-p-10', 'li-p-11', 'li-p-12', 'li-p-13', 'li-p-14', 'li-p-15',
+        'li-p-9', 'li-p-10', 'li-p-11', 'li-p-12', 'li-p-13', 'li-p-15',
         'li-p-16', 'li-p-17', 'li-p-18', 'li-p-19', 'li-p-20',
-        'li-o-9', 'li-o-10', 'li-o-11', 'li-o-12', 'li-o-13', 'li-o-14', 'li-o-15', 'li-o-16', 'li-o-17',
+        'li-o-9', 'li-o-11', 'li-o-12', 'li-o-13', 'li-o-14', 'li-o-15', 'li-o-16', 'li-o-17',
       ];
       const newItems = laneItems.filter(li => newLaneItemIds.includes(li.id));
       await db.laneItems.bulkAdd(newItems);
@@ -387,6 +378,40 @@ async function migrateEnrichFromResearch() {
   );
 }
 
+async function migrateConsolidateSteps() {
+  // Check if migration already ran by checking if step-0-1 still exists
+  const step01 = await db.steps.get('step-0-1');
+  if (!step01) return;
+
+  await db.transaction('rw', [db.steps, db.laneItems], async () => {
+    // Phase 0: Consolidate 3 steps → 1 ("Marketing develops creative")
+    await db.steps.update('step-0-0', {
+      name: 'Marketing develops creative',
+      touchpoints: ['Figma', 'HubSpot', 'Creative briefs', 'Brief templates', 'Google Docs', 'Slack', 'Email'],
+    });
+    await db.steps.delete('step-0-1');
+    await db.steps.delete('step-0-2');
+
+    // Phase 3: Remove "Navigate the jargon gap" (it's a pain, not a step)
+    await db.steps.delete('step-3-2');
+
+    // Remove lane items that become duplicates after merging steps
+    await db.laneItems.bulkDelete(['li-p-2', 'li-p-14', 'li-o-2', 'li-o-10']);
+
+    // Remap lane items from deleted steps to their new homes
+    await db.laneItems.update('li-o-13', { stepId: 'step-0-0' });  // opp-9 from step-0-1
+    await db.laneItems.update('li-p-6', { stepId: 'step-3-0' });   // ins-5 from step-3-2
+    await db.laneItems.update('li-p-19', { stepId: 'step-3-0' });  // ins-13 from step-3-2
+    await db.laneItems.update('li-o-15', { stepId: 'step-3-0' });  // opp-10 from step-3-2
+
+    // Delete touchpoint lane items for removed steps
+    const allTpItems = await db.laneItems.where('laneId').equals('lane-touchpoints').toArray();
+    const removedStepIds = ['step-0-1', 'step-0-2', 'step-3-2'];
+    const toDelete = allTpItems.filter(li => removedStepIds.includes(li.stepId)).map(li => li.id);
+    await db.laneItems.bulkDelete(toDelete);
+  });
+}
+
 export async function seedDatabase() {
   const count = await db.projects.count();
   if (count > 0) {
@@ -394,6 +419,7 @@ export async function seedDatabase() {
     await migrateExperienceLane();
     await migratePersonaAvatar();
     await migrateEnrichFromResearch();
+    await migrateConsolidateSteps();
     return;
   }
 
